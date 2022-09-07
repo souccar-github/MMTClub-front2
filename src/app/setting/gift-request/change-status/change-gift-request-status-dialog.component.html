@@ -1,0 +1,31 @@
+<form class="form-horizontal" autocomplete="off" #changeStatusForm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header>
+            {{'CreateNewCategory' | localize}}
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-md-12">
+                    <!--Status-->
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label" for="type">
+                            {{ "Status" | localize }}
+                        </label>
+                        <div class="col-md-9">
+                            <ejs-dropdownlist id='status' name='status' cssClass="as-sy-input"
+                                [dataSource]='statuses' [fields]='fields' required
+                                [(ngModel)]="input.status" #statusModel="ngModel"
+                                #statusEl></ejs-dropdownlist>
+                            <abp-validation-summary [control]="statusModel" [controlEl]="statusEl">
+                            </abp-validation-summary>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!changeStatusForm.form.valid || saving"
+                (onCancelClick)="dialogRef.close()"></abp-modal-footer>
+        </nb-card-footer>
+    </nb-card>
+</form>

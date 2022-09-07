@@ -1,0 +1,68 @@
+<form class="form-horizontal" autocomplete="off" #createCategoryNewsForm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header>
+            {{'CreateNews' | localize}}
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-md-8">
+                    <!--Title-->
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label" for="title">
+                            {{ "Title" | localize }}
+                        </label>
+                        <div class="col-md-9">
+                            <input type="text" class="e-input as-sy-input" name="title" id="title" minlength="2" required
+                                autocomplete="off" [(ngModel)]="news.title" #titleModel="ngModel" #titleEl />
+                            <abp-validation-summary [control]="titleModel" [controlEl]="titleEl">
+                            </abp-validation-summary>
+                        </div>
+                    </div>
+                    <!--Description-->
+                    <div class="form-group row ">
+                        <label class="col-md-3 col-form-label" for="description">
+                            {{ "Description" | localize }}
+                        </label>
+                        <div class="col-md-9">
+                            <textarea class="e-input as-sy-input" name="description" id="description" autocomplete="off"
+                                [(ngModel)]="news.description" #descriptionModel="ngModel"
+                                #descriptionEl></textarea>
+                            <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl">
+                            </abp-validation-summary>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4">
+                    <!--Image-->
+                    <div class="form-group row">
+                        <!-- <label class="col-md-3 col-form-label" for="imageCategoryNews">
+                            {{ "Image" | localize }}
+                        </label> -->
+                        <div class="col-md-11">
+                            <div class="upload-img">
+                                <img [src]="imageSrc" width="200" (click)="showUploadImageDialog($event)"
+                                    height="200" />
+
+                                <div class="upload-img-trash" *ngIf="imageSrc != 'assets/img/upload.png'">
+                                    <a ejs-button cssClass="as-btn-danger-outline e-small e-round"
+                                        (click)="deleteImage($event)" iconCss="e-icons e-trash"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <input class="e-input as-sy-input" accept="image/png, image/jpeg" type="file"
+                                id="imageCategoryNews" (change)="onChangeImage($event)" name="imageCategoryNews" #imageCategoryNews
+                                style="display: none;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createCategoryNewsForm.form.valid || saving"
+                (onCancelClick)="dialogRef.close()"></abp-modal-footer>
+        </nb-card-footer>
+    </nb-card>
+</form>

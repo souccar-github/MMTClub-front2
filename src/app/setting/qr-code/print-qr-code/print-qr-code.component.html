@@ -1,0 +1,25 @@
+<div class="row">
+    <!-- <div class="col-md-4"></div>
+    <div class="col-md-4"></div> -->
+    <div class="col-md-4">
+            <button ejs-button 
+            [printStyle]="{img : {'float': 'left'}, body: { 'size': 'auto' }  }"
+                printSectionId="print-section"
+                ngxPrint cssClass="as-btn-primary-outline e-small">
+                <nb-icon icon="printer-outline"></nb-icon>
+                Print Qr-Codes
+            </button> 
+    </div>
+</div>
+<hr />
+<div id="print-section">
+    <div class="page">
+        <div class="subpage">
+            <img *ngFor="let code of codes" [src]="baseUrl +'/' + code.imagePath" width="70" height="70" alt="Qr-Code"  />
+        </div>
+    </div>
+
+</div>
+
+
+    

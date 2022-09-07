@@ -1,0 +1,73 @@
+<div [@routerTransition]>
+    <div class="row">
+        <div class="col-md-12">
+            <nb-card class="as-case-card">
+                <nb-card-header>
+                    <nb-actions>
+                        <nb-action class="control-item">
+                            <h5 class="as-m-r-1"><i class="fas fa-list"></i></h5>
+                            <h5>{{ "News" | localize }}</h5>
+                        </nb-action>
+                        <nb-action class="control-item ">
+                        </nb-action>
+                    </nb-actions>
+                </nb-card-header>
+                <nb-card-body class="as-case-card-body">
+                    <ejs-grid id="CategoryNewsGrid" #categoryNewsGrid [dataSource]="news" [query]="param" [allowPaging]="true"
+                        [allowSorting]="true" [allowFiltering]="true" [pageSettings]="pageSettings"
+                        [filterSettings]='filterOption'>
+                        <!--toolbar-->
+                        <ng-template #toolbarTemplate>
+                            <ejs-toolbar>
+                                <div>
+                                    <!-- <div style="width: 5px;"></div> -->
+                                    <div>
+                                        <button ejs-button cssClass="as-btn-primary e-small e-round"
+                                            iconCss="e-icons e-plus" (click)="showCreateDialog()"
+                                            *ngIf="permission.isGranted('Actions.CategoryNews.Create')"></button>
+                                    </div>
+                                    <div>
+                                        <button ejs-button cssClass="as-btn-primary-outline"
+                                            iconCss="e-icons e-filter-clear-3"> <span
+                                                class="as-btn-text">{{'ClearFilters' | localize}}</span></button>
+                                    </div>
+                                    <div>
+                                        <button ejs-button cssClass="as-btn-primary-outline"
+                                            iconCss="e-icons e-sorting"> <span class="as-btn-text">{{'ClearSorts' |
+                                                localize}}</span></button>
+                                    </div>
+                                </div>
+                            </ejs-toolbar>
+
+                        </ng-template>
+                        <!--Columns-->
+                        <e-columns>
+                            <e-column headerText="{{l('Commands')}}" textAlign='Center' width="140"
+                                *ngIf="permission.isGranted('Actions.CategoryNews.Update') || permission.isGranted('Actions.CategoryNews.Delete')">
+                                <ng-template #template let-data>
+                                    <span class=""><button ejs-button cssClass="as-btn-success-outline e-small e-round"
+                                            iconCss="e-icons e-edit" (click)="showEditDialog(data.id)"
+                                            *ngIf="permission.isGranted('Actions.CategoryNews.Update')"></button> </span>
+                                    <span class="as-m-l-2"><button ejs-button
+                                            cssClass="as-btn-danger-outline e-small e-round" iconCss="e-icons e-trash"
+                                            (click)="delete(data)"
+                                            *ngIf="permission.isGranted('Actions.CategoryNews.Delete')"></button></span>
+                                </ng-template>
+                            </e-column>
+                                <e-column width="120">
+                                <ng-template #template let-data>
+                                    <img [src]="getImagePath(data.image)" width="60" height="60" />
+                                         
+                                </ng-template>
+                            </e-column>
+                            <e-column field="title" headerText="{{'Title' | localize}}" textAlign="center" width="200"></e-column>
+                            <e-column field="description" width="600" headerText="{{'Description' | localize}}" textAlign="center">
+                            </e-column>
+                        </e-columns>
+                    </ejs-grid>
+                </nb-card-body>
+            </nb-card>
+        </div>
+    </div>
+
+</div>

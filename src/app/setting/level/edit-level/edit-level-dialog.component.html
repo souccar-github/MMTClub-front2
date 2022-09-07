@@ -1,0 +1,88 @@
+<form class="form-horizontal" autocomplete="off" #editLevelForm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header>
+            {{'EditLevel' | localize}}
+        </nb-card-header>
+        <nb-card-body>
+            <div>
+                <!--Name-->
+                <div class="form-group row required">
+                    <label class="col-md-3 col-form-label" for="name">
+                        {{ "Name" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="e-input as-sy-input" name="name" id="name" minlength="2" required
+                            autocomplete="off" [(ngModel)]="level.name" #nameModel="ngModel" #nameEl />
+                        <abp-validation-summary [control]="nameModel" [controlEl]="nameEl">
+                        </abp-validation-summary>
+                    </div>
+                </div>
+                <!--Description-->
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label" for="description">
+                        {{ "Description" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <textarea class="e-input as-sy-input" name="description" id="description" autocomplete="off"
+                            [(ngModel)]="level.description" #descriptionModel="ngModel"
+                            #descriptionEl></textarea>
+                        <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl">
+                        </abp-validation-summary>
+                    </div>
+                </div>
+                <!--FromPoint-->
+                <div class="form-group row required">
+                    <label class="col-md-3 col-form-label" for="fromPoint">
+                        {{ "FromPoint" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <ejs-numerictextbox id='fromPoint' name='fromPoint' format='N' min="1" cssClass="as-sy-input"
+                            required [(ngModel)]="level.fromPoint" #fromPointModel="ngModel" #fromPointEl>
+                        </ejs-numerictextbox>
+                        <abp-validation-summary [control]="fromPointModel" [controlEl]="fromPointEl">
+                        </abp-validation-summary>
+                    </div>
+                </div>
+                <!--ToPoint-->
+                <div class="form-group row required">
+                    <label class="col-md-3 col-form-label" for="toPoint">
+                        {{ "ToPoint" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <ejs-numerictextbox id='toPoint' name='toPoint' format='N' min="1" cssClass="as-sy-input"
+                            required [(ngModel)]="level.toPoint" #toPointModel="ngModel" #toPointEl>
+                        </ejs-numerictextbox>
+                        <abp-validation-summary [control]="toPointModel" [controlEl]="toPointEl">
+                        </abp-validation-summary>
+                    </div>
+                </div>
+                <!--Order-->
+                <div class="form-group row required">
+                    <label class="col-md-3 col-form-label" for="toPoint">
+                        {{ "Order" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <ejs-numerictextbox id='order' name='order' format='N' min="1" cssClass="as-sy-input"
+                            required [(ngModel)]="level.order" #orderModel="ngModel" #orderEl>
+                        </ejs-numerictextbox>
+                        <abp-validation-summary [control]="orderModel" [controlEl]="orderEl">
+                        </abp-validation-summary>
+                    </div>
+                </div>
+                <!--Color-->
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="color">
+                        {{ "Color" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <input ejs-colorpicker type='color' id='color' name='color' [(ngModel)]='color' />
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!editLevelForm.form.valid || saving"
+                (onCancelClick)="dialogRef.close()"></abp-modal-footer>
+        </nb-card-footer>
+    </nb-card>
+</form>

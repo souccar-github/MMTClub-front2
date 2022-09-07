@@ -1,0 +1,41 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+    nb-card {
+        width: 45rem;
+    }
+}
+
+.control_wrapper {
+    margin: auto;
+}
+#defaultfileupload .e-upload.e-control {
+    position: relative;
+    margin: 15px 0;
+}
+.e-upload {
+    float: none;
+}
+.e-upload .e-upload-actions {
+    float: none;
+    text-align: right;
+}
+.sequential-upload {
+    padding-top: 18px;
+}
+
+.upload-img{
+    position: relative;
+}
+
+.upload-img img{
+    cursor: pointer;
+    border: 1px dashed rgba(0, 0, 0, 0.42);
+}
+
+.upload-img .upload-img-trash{
+    position:absolute; 
+    top:5px; 
+    left:5px;
+}
+

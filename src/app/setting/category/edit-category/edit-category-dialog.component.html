@@ -1,0 +1,95 @@
+<form class="form-horizontal" autocomplete="off" #editCategoryForm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header>
+            {{'CreateNewCategory' | localize}}
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-md-8">
+                    <!--Name-->
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label" for="name">
+                            {{ "Name" | localize }}
+                        </label>
+                        <div class="col-md-9">
+                            <input type="text" class="e-input as-sy-input" name="name" id="name" minlength="2" required
+                                autocomplete="off" [(ngModel)]="category.name" #nameModel="ngModel" #nameEl />
+                            <abp-validation-summary [control]="nameModel" [controlEl]="nameEl">
+                            </abp-validation-summary>
+                        </div>
+                    </div>
+                    <!--Description-->
+                    <div class="form-group row ">
+                        <label class="col-md-3 col-form-label" for="description">
+                            {{ "Description" | localize }}
+                        </label>
+                        <div class="col-md-9">
+                            <textarea class="e-input as-sy-input" name="description" id="description" autocomplete="off"
+                                [(ngModel)]="category.description" #descriptionModel="ngModel"
+                                #descriptionEl></textarea>
+                            <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl">
+                            </abp-validation-summary>
+                        </div>
+                    </div>
+                    <!--Point-->
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label" for="point">
+                            {{ "Point" | localize }}
+                        </label>
+                        <div class="col-md-9">
+                            <ejs-numerictextbox id='point' name='point' format='N' min="1" cssClass="as-sy-input"
+                                required [(ngModel)]="category.point" #pointModel="ngModel" #pointEl>
+                            </ejs-numerictextbox>
+                            <abp-validation-summary [control]="pointModel" [controlEl]="pointEl">
+                            </abp-validation-summary>
+                        </div>
+                    </div>
+                    <!--ParentCategory-->
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="type">
+                            {{ "ParentCategory" | localize }}
+                        </label>
+                        <div class="col-md-9">
+                            <ejs-dropdownlist id='parentCategoryId' name='parentCategoryId' cssClass="as-sy-input"
+                                [dataSource]='categoriesForDropdown' [fields]='parentFields'
+                                [(ngModel)]="category.parentCategoryId" #parentCategoryIdModel="ngModel"
+                                #parentCategoryIdEl></ejs-dropdownlist>
+                            <abp-validation-summary [control]="parentCategoryIdModel" [controlEl]="parentCategoryIdEl">
+                            </abp-validation-summary>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4">
+                    <!--Image-->
+                    <div class="form-group row">
+                        <!-- <label class="col-md-3 col-form-label" for="imageCategory">
+                            {{ "Image" | localize }}
+                        </label> -->
+                        <div class="col-md-11">
+                            <div class="upload-img">
+                                <img [src]="imageSrc" width="200" (click)="showUploadImageDialog($event)"
+                                    height="200" />
+
+                                <div class="upload-img-trash" *ngIf="imageSrc != 'assets/img/upload.png'">
+                                    <a ejs-button cssClass="as-btn-danger-outline e-small e-round"
+                                        (click)="deleteImage($event)" iconCss="e-icons e-trash"></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <input class="e-input as-sy-input" accept="image/png, image/jpeg" type="file"
+                                id="imageCategory" (change)="onChangeImage($event)" name="imageCategory" #imageCategory
+                                style="display: none;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!editCategoryForm.form.valid || saving"
+                (onCancelClick)="dialogRef.close()"></abp-modal-footer>
+        </nb-card-footer>
+    </nb-card>
+</form>

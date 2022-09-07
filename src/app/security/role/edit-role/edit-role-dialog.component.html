@@ -1,0 +1,112 @@
+<form class="form-horizontal" autocomplete="off" #editRoleForm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header>
+            {{'CreateNewRole' | localize}}
+        </nb-card-header>
+        <nb-card-body>
+            <nb-tabset>
+                <nb-tab tabTitle="{{'RoleDetails' | localize}}">
+                    <div>
+                        <!--Name-->
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label" for="name">
+                                {{ "Name" | localize }}
+                            </label>
+                            <div  class="col-md-9">
+                                <input nbInput type="text" class="form-control"
+                                name="name" 
+                                fullWidth
+                                id="name" 
+                                minlength="2" 
+                                required 
+                                [(ngModel)]="role.name" 
+                                #nameModel="ngModel" 
+                                #nameEl />
+                                <abp-validation-summary [control]="nameModel" [controlEl]="nameEl">
+                                </abp-validation-summary>
+                            </div>
+                        </div>
+                        
+                        <!-- Display Name -->
+                        <div class="form-group row required">
+                            <label class="col-md-3 col-form-label" for="displayName">
+                                {{ "DisplayName" | localize }}
+                            </label>
+                            <div class="col-md-9">
+                                <input
+                                    nbInput
+                                    fullWidth
+                                    class="form-control"
+                                    type="text"
+                                    name="displayName"
+                                    id="displayName"
+                                    required
+                                    minlength="2"
+                                    maxlength="32"
+                                    [(ngModel)]="role.displayName"
+                                    #displayNameModel="ngModel"
+                                    #displayNameEl
+                                    />
+                                <abp-validation-summary
+                                [control]="displayNameModel"
+                                [controlEl]="displayNameEl"
+                                ></abp-validation-summary>
+                            </div>
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="description">
+                                {{ "RoleDescription" | localize }}
+                            </label>
+                            <div class="col-md-9">
+                                <textarea
+                                    nbInput
+                                    fullWidth
+                                    class="form-control"
+                                    type="text"
+                                    name="description"
+                                    id="description"
+                                    rows="2"
+                                    [(ngModel)]="role.description"
+                                    #descriptionModel="ngModel"
+                                    #descriptionEl
+                                    ></textarea>
+                                <abp-validation-summary
+                                [control]="descriptionModel"
+                                [controlEl]="descriptionEl"
+                                ></abp-validation-summary>
+                            </div>
+                        </div>
+                    </div>
+                </nb-tab>
+                <nb-tab class="tabset-height" tabTitle="{{'Permissions' | localize}}">
+                    <!-- <nb-list-item *ngFor="let permission of permissions; let i = index">
+                        
+                    </nb-list-item> -->
+                    <table class="table table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th><strong class="text-info">{{ "Permission" | localize }}</strong></th>
+                                <th><nb-checkbox (checkedChange)="checkAll($event)"><strong class="text-info">{{ "All" | localize }}</strong></nb-checkbox> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let perm of permissions;" >
+                                <td>{{perm?.displayName}} </td>
+                                <td><nb-checkbox [checked]="validateChecked(perm.name)" (checkedChange)="onCheckPermision($event, perm.name)"></nb-checkbox> </td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </nb-tab>
+            </nb-tabset>
+            
+        </nb-card-body>
+        <nb-card-footer>
+            <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!editRoleForm.form.valid || saving"
+            (onCancelClick)="dialogRef.close()"></abp-modal-footer>
+        </nb-card-footer>
+    </nb-card>
+</form>

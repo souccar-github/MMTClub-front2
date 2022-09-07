@@ -1,0 +1,44 @@
+<form class="form-horizontal" autocomplete="off" #editSizeForm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header>
+            {{'EditSize' | localize}}
+        </nb-card-header>
+        <nb-card-body>
+            <div>
+                <!--Name-->
+                <div class="form-group row required">
+                    <label class="col-md-3 col-form-label" for="name">
+                        {{ "Name" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <input nbInput type="text" class="e-input as-sy-input" name="name" id="name" minlength="2"
+                            fullWidth required autocomplete="off" [(ngModel)]="size.name" #nameModel="ngModel"
+                            #nameEl />
+                        <abp-validation-summary [control]="nameModel" [controlEl]="nameEl">
+                        </abp-validation-summary>
+                    </div>
+                </div>
+                <!--Order-->
+                <div class="form-group row required">
+                    <label class="col-md-3 col-form-label" for="order">
+                        {{ "Order" | localize }}
+                    </label>
+                    <div class="col-md-9">
+                        <ejs-numerictextbox id='order' name='order' format='N' min="1" cssClass="as-sy-input"
+                             required [(ngModel)]="size.order" #orderModel="ngModel" #orderEl>
+                        </ejs-numerictextbox>
+                        <abp-validation-summary [control]="orderModel" [controlEl]="orderEl">
+                        </abp-validation-summary>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!editSizeForm.form.valid || saving"
+                (onCancelClick)="dialogRef.close()"></abp-modal-footer>
+        </nb-card-footer>
+    </nb-card>
+</form>

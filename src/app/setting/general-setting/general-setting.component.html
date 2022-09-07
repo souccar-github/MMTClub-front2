@@ -1,0 +1,57 @@
+<form class="form-horizontal" autocomplete="off" #generalSettingForm="ngForm" (ngSubmit)="save()">
+    <nb-card>
+        <nb-card-header>
+            {{'SocialMedia' | localize}}
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-lg-4 col-md-4">
+                    <div class="e-input-group">
+                        <input class="e-input as-sy-input" type="text" placeholder='{{ "FaceBook" | localize }}' autocomplete="off"  
+                        [(ngModel)]="generalSetting.facebook" [ngModelOptions]="{standalone: true}" />
+                        <span><i class="fab fa-facebook-f fa-2x me-3" style="color: #3b5998;"></i></span>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-lg-4 col-md-4">
+                    <div class="e-input-group">
+                        <input class="e-input as-sy-input" type="text" placeholder='{{ "Instagram" | localize }}' autocomplete="off" 
+                        [(ngModel)]="generalSetting.instagram" [ngModelOptions]="{standalone: true}" />
+                        <span><i class="fab fa-instagram fa-2x me-3" style="color: #ac2bac;"></i></span>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-lg-4 col-md-4">
+                    <div class="e-input-group">
+                        <input class="e-input as-sy-input" type="text" placeholder='{{ "YouTube" | localize }}' autocomplete="off" 
+                        [(ngModel)]="generalSetting.youTube" [ngModelOptions]="{standalone: true}" />
+                        <span><i class="fab fa-youtube fa-2x me-3" style="color: #ed302f;"></i></span>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-lg-4 col-md-4">
+                    <div class="e-input-group">
+                        <input class="e-input as-sy-input" type="text" placeholder='{{ "Twitter" | localize }}' autocomplete="off" 
+                        [(ngModel)]="generalSetting.twitter" [ngModelOptions]="{standalone: true}" />
+                        <span><i class="fab fa-twitter fa-2x me-3" style="color: #55acee;"></i></span>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-lg-4 col-md-4">
+                    <div class="e-input-group">
+                        <input class="e-input as-sy-input" type="text" placeholder='{{ "Telegram" | localize }}' autocomplete="off" 
+                        [(ngModel)]="generalSetting.telegram" [ngModelOptions]="{standalone: true}" />
+                        <span><i class="fab fa-telegram fa-2x me-3" style="color: #55acee;"></i></span>
+                    </div>
+                </div>
+
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton status="primary" type="submit">
+                <nb-icon icon="save"></nb-icon>
+                {{ 'Save' | localize}}
+              </button>
+        </nb-card-footer>
+    </nb-card>
+</form>
